@@ -26,7 +26,6 @@ def recognizeSpeechFromMic(recognizer, microphone):
 
   try:
     response["transcription"] = recognizer.recognize_google(audio)
-    print(response)
 
   except speech.UnknownValueError:
     response["error"] = "Unable to recognize speech"
@@ -40,20 +39,20 @@ def recognizeSpeechFromMic(recognizer, microphone):
 
 if __name__ == "__main__":
   
-  words = ["Atlanta", "Pittsburgh", "Chicago", "New York City", "Miami"]
+  wordbank = ["Atlanta", "Pittsburgh", "Chicago", "New York City", "Miami"]
   tries = 3
   prompt_limit = 5
 
   recognizer = speech.Recognizer()
   microphone = speech.Microphone()
 
-  word = random.choice(words)
+  word = random.choice(wordbank)
 
   instructions = (
     "I'm thinking of one of these cities: \n"
     "{words}\n"
     "You have {n} tries to guess which one.\n"
-  ).format(words=', '.join(words), n=tries)
+  ).format(wordbank=', '.join(wordbank), n=tries)
 
   print(instructions)
 
